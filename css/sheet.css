@@ -1,0 +1,129 @@
+* {
+  padding: 0;
+  margin: 0; }
+
+html,
+body {
+  height: 100%;
+  font-family: "Mircosoft Yahei"; }
+
+a,
+a:hover,
+a:visited {
+  text-decoration: none; }
+
+ul,
+ol {
+  list-style-type: none; }
+
+input {
+  outline: none; }
+
+#caution {
+  position: fixed;
+  top: 38.2%;
+  left: 50%;
+  margin-top: -35px;
+  margin-left: -140px;
+  height: 70px;
+  width: 280px;
+  border-radius: 4px;
+  font-size: 28px;
+  line-height: 70px;
+  text-align: center;
+  display: none;
+  z-index: 1;
+  background: #cc16b5;
+  color: white;
+  border: 1px solid #403273; }
+
+.boldwhite {
+  color: #FFFFFF;
+  font-family: "Microsoft YaHei";
+  font-weight: bold; }
+
+.banner {
+  width: 100%;
+  height: 40px;
+  background: #333333;
+  line-height: 40px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  font-size: 16px;
+  z-index: 2; }
+
+.insert {
+  margin-top: 70px;
+  height: auto;
+  width: 100%; }
+  .insert .input {
+    width: 12%;
+    height: 20px;
+    margin-bottom: 2px; }
+  .insert #insertData {
+    width: 70px;
+    height: 20px;
+    margin-bottom: 2px; }
+
+.sheet {
+  width: 100%;
+  position: relative;
+  z-index: 0; }
+  .sheet table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    text-align: center; }
+    .sheet table thead {
+      background: #333333;
+      color: #FFFFFF; }
+      .sheet table thead th {
+        border-style: solid;
+        border-color: #CCCCCC;
+        height: 40px; }
+        .sheet table thead th #order.iconfont {
+          font-size: 20px;
+          line-height: 40px;
+          color: #FFF;
+          margin-left: 5px; }
+    .sheet table tbody {
+      color: #1c1c1c; }
+      .sheet table tbody tr:nth-child(even) {
+        background: #F5F5F5; }
+      .sheet table tbody tr:hover {
+        background: #F2EBEB; }
+      .sheet table tbody tr.bg,
+      .sheet table tbody tr.bg:nth-child(even) {
+        background: #000;
+        color: #FFF; }
+        .sheet table tbody tr.bg td input[type='text'],
+        .sheet table tbody tr.bg:nth-child(even) td input[type='text'] {
+          color: #FFF; }
+      .sheet table tbody tr td {
+        border-style: solid;
+        border-color: #CCCCCC;
+        height: 40px;
+        position: relative; }
+        .sheet table tbody tr td .delete {
+          width: 100%;
+          height: 40px;
+          color: white;
+          background: red; }
+        .sheet table tbody tr td .delete:active {
+          background: #b30000; }
+        .sheet table tbody tr td #edit {
+          width: 100%;
+          height: 100%;
+          font-size: 14px;
+          text-align: center;
+          border: none;
+          position: absolute;
+          top: 0;
+          left: 0;
+          font-weight: bold;
+          background: lightblue; }
+  .sheet #multi-delete {
+    float: right; }
+
+/*# sourceMappingURL=sheet.css.map */

@@ -1,0 +1,131 @@
+@import "public.scss";
+#caution {
+    position: fixed;
+    top: 38.2%;
+    left: 50%;
+    margin-top: -35px;
+    margin-left: -140px;
+    height: 70px;
+    width: 280px;
+    border-radius: 4px;
+    font-size: 28px;
+    line-height: 70px;
+    text-align: center;
+    display: none;
+    z-index: 1;
+    background: #cc16b5;
+    color: white;
+    border: 1px solid #403273;
+}
+
+.boldwhite {
+    color: #FFFFFF;
+    font-family: "Microsoft YaHei";
+    font-weight: bold;
+}
+
+.banner {
+    width: 100%;
+    height: 40px;
+    background: #333333;
+    line-height: 40px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    font-size: 16px;
+    z-index: 2;
+}
+
+.insert {
+    margin-top: 70px;
+    height: auto;
+    width: 100%;
+    .input {
+        width: 12%;
+        height: 20px;
+        margin-bottom: 2px;
+    }
+    #insertData {
+        width: 70px;
+        height: 20px;
+        margin-bottom: 2px;
+    }
+}
+
+.sheet {
+    width: 100%;
+    position: relative;
+    z-index: 0;
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 14px;
+        text-align: center;
+        thead {
+            background: #333333;
+            color: #FFFFFF;
+            th {
+                border-style: solid;
+                border-color: #CCCCCC;
+                height: 40px;
+                #order.iconfont {
+                    font-size: 20px;
+                    line-height: 40px;
+                    color: #FFF;
+                    margin-left: 5px;
+                }
+            }
+        }
+        tbody {
+            color: #1c1c1c;
+            tr:nth-child(even) {
+                background: #F5F5F5;
+            }
+            tr:hover {
+                background: #F2EBEB;
+            }
+            tr.bg,
+            tr.bg:nth-child(even) {
+                background: #000;
+                color: #FFF;
+                td {
+                    input[type='text'] {
+                        color: #FFF;
+                    }
+                }
+            }
+            tr {
+                td {
+                    border-style: solid;
+                    border-color: #CCCCCC;
+                    height: 40px;
+                    position: relative;
+                    .delete {
+                        width: 100%;
+                        height: 40px;
+                        color: white;
+                        background: red;
+                    }
+                    .delete:active {
+                        background: darken(red, 15%);
+                    }
+                    #edit {
+                        width: 100%;
+                        height: 100%;
+                        font-size: 14px;
+                        text-align: center;
+                        border: none;
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        font-weight: bold;
+                        background: lightblue;
+                    }
+                }
+            }
+        }
+    }
+    #multi-delete {
+        float: right;
+    }
+}

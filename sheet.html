@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Sheet</title>
+    <link rel="stylesheet" href="css/sheet.css">
+    <link rel="stylesheet" href="font/iconfont.css">
+</head>
+
+<body>
+    <div id="caution"></div>
+    <div class="banner">
+        <pre class="boldwhite">    首页  /  我的课程  /  课程列表
+		</pre>
+    </div>
+    <div class="insert">
+        <input type="text" class="input" id="semester" placeholder="分类">
+        <input type="text" class="input" id="title" placeholder="标题">
+        <input type="text" class="input" id="class" placeholder="班级">
+        <input type="text" class="input" id="release" placeholder="状态">
+        <input type="text" class="input" id="createTime" placeholder="创建时间">
+        <input type="text" class="input" id="creator" placeholder="创建者">
+        <input type="text" class="input" id="location" placeholder="分校地区">
+        <input type="button" id="insertData" value="插入数据">
+    </div>
+
+    <div class="sheet">
+        <table class="boldwhite" id="database">
+            <thead>
+                <th><input type="checkbox" id="allmark">ID<span id="order" class="iconfont">&#xe632;</span></th>
+                <th>分类</th>
+                <th>标题</th>
+                <th>班级</th>
+                <th>状态</th>
+                <th>创建时间</th>
+                <th>创建者</th>
+                <th>分校地区</th>
+                <th>功能</th>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+        <input type="button" id="multi-delete" value="删除选中项">
+    </div>
+</body>
+
+</html>
+<script src="js/jquery-1.7.2.min.js"></script>
+<script src='js/data.js'></script>
+<script src="js/module.js"></script>
+<script>
+    //Database initialization
+
+    $(function() {
+        var order = "Default";
+        data.length;
+        var nextid = data.length; //
+        var Classnames = {
+            semester: "#semester",
+            title: "#title",
+            class: "#class",
+            release: "#release",
+            createTime: "#createTime",
+            creator: "#creator",
+            location: "#location"
+        };
+
+
+        //To Initalizate every row
+        //初始化
+
+        InitDraw(data);
+        $("tbody tr").eq(0).addClass("bg");
+
+        $(window).on('keydown', function(e) {
+            var key = e.keyCode;
+            var index;
+            switch (key) {
+                case 38:
+                    index = $("tr.bg").index();
+                    if (index > 0) {
+                        index--;
+                    }
+                    $("tbody tr").eq(index).addClass("bg").siblings("tr").removeClass("bg");
+                    break;
+                case 40:
+                    index = $("tr.bg").index();
+                    if (index < $('tbody tr').length - 1) {
+                        index++;
+                    }
+                    $("tbody tr").eq(index).addClass("bg").siblings("tr").removeClass("bg");
+                    break;
+                case 46:
+                    data = DeleteRow2($("tbody tr.bg"), data)
+                    break;
+            }
+        })
+
+        //To delete a row,when delete a row deletes its data at the same time
+        $("#database").on('click', ".delete", function() {
+            data = DeleteRow($(this), data);
+        })
+
+        //To insert a row when input values are right. Otherwise it gives a caution tells the failure
+        $("#insertData").on('click', function() {
+            var newdata;
+            if (InputNoError(Classnames, "#caution", nextid)) {
+                newdata = InputNoError(Classnames, "#caution", nextid);
+
+                ClearInput(Classnames);
+                Append_A_Row();
+
+                if (order == "ToSmall") {
+                    data.unshift({});
+                    data[0] = newdata;
+                    ReDraw(data);
+                } else {
+                    data.push(newdata);
+                    console.log(data)
+                    DataIn(data.length, newdata);
+
+                }
+                nextid++;
+            }
+        });
+
+        $("#order").on('click', function() {
+            if (order == "Default") {
+                data = ToBig(data);
+                order = "ToBig";
+                console.log(data[1]);
+                ReDraw(data);
+            } else {
+                data = Reverse(data);
+                ReDraw(data);
+
+                if (order == "ToBig") {
+                    order = "ToSmall";
+                    $("#order").html("&#xe65c;");
+
+                } else {
+                    order = "ToBig";
+                    $("#order").html("&#xe632;");
+                }
+            }
+        })
+        //编辑td数据
+        $("#database").on('click', 'td', function() {
+            if (!$(this).hasClass("id")) {
+                var newtext = $(this).text();
+                var edit_id = $(this).parent("tr").attr("title");
+                var col = $(this).index();
+                $(this).html("<input type='text' id='edit'>");
+                $("#edit").val(newtext);
+                $("#edit").on('click', function() {
+                    return false;
+                })
+                $("#edit").on('blur', function() {
+                    if ($("#edit").val() !== "") {
+                        newtext = $("#edit").val();
+                        $(this).parent("td").html(newtext);
+                        $("#edit").remove();
+                    }
+
+                    $.each(data, function(key, val) {
+                        if (val.id == edit_id) {
+                            switch (col) {
+                                case 1:
+                                    data[key].semester = newtext;
+                                    break;
+                                case 2:
+                                    data[key].title = newtext;
+                                    break;
+                                case 3:
+                                    data[key].class = newtext;
+                                    break;
+                                case 4:
+                                    data[key].release = newtext;
+                                    break;
+                                case 5:
+                                    data[key].createTime = newtext;
+                                    break;
+                                case 6:
+                                    data[key].creator = newtext;
+                                    break;
+                                case 7:
+                                    data[key].location = newtext;
+                                    break;
+                            }
+                        }
+                    })
+                })
+
+
+            }
+        })
+        $("#allmark").on('input change', function() {
+            if ($("#allmark").attr("checked")) {
+                $(".mark").each(function() {
+                    ($(this).attr("checked", true))
+                })
+            } else {
+                $(".mark").each(function() {
+                    ($(this).removeAttr("checked"))
+                })
+            }
+        })
+        $("tbody").on('input change', '.mark', function() {
+            $("#allmark").removeAttr("checked");
+        })
+        $(".sheet").on('click', '#multi-delete', function() {
+            if ($("#allmark").attr("checked")) {
+                $("tbody").html("");
+                data = [];
+            } else {
+
+                $(".mark").each(function() {
+                    if ($(this).attr("checked")) {
+                        $(this).removeAttr("checked");
+                        data = DeleteRow($(this), data);
+                    }
+                })
+            }
+
+        })
+
+    })
+
+</script>

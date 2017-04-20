@@ -1,0 +1,68 @@
+		* {
+		    padding: 0;
+		    margin: 0;
+		}
+		
+		html,
+		body {
+		    height: 100%;
+		}
+		
+		.tablewhole {
+		    width: 100%;
+		    height: 100%;
+		    border-collapse: collapse;
+		}
+		
+		.menu {
+		    height: 100%;
+		    width: 240px;
+		    background: #333333;
+		    position: relative;
+		}
+		
+		.menuleft {
+		    height: auto;
+		    width: 200px;
+		    position: absolute;
+		    top: 90px;
+		    left: 50%;
+		    margin-left: -100px;
+		    background: #666666;
+		    border-collapse: collapse;
+		    text-align: center;
+		}
+		
+		.sheet {
+		    height: 100%;
+		    overflow: hidden;
+		}
+		
+		#thinksite {
+		    width: 200px;
+		    height: 50px;
+		    position: absolute;
+		    top: 20px;
+		    left: 50%;
+		    margin-left: -100px;
+		}
+		
+		.son {
+		    border-color: #333333;
+		    border-style: solid;
+		    height: 40px;
+		    color: #FFFFFF;
+		    font-size: 16px;
+		    font-family: "Microsoft YaHei";
+		    font-weight: bold;
+		}
+		
+		.son:hover {
+		    color: #424242;
+		    background: #999999;
+		}
+		
+		.sheethtml {
+		    height: 100%;
+		    width: 100%;
+		}
